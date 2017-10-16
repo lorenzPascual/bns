@@ -40,7 +40,7 @@
           if(name!=="" || pass!=="")
           {
              $.ajax({
-              url:"ajaxLogin.php",
+              url:"home/ajaxLogin.php",
               type:"POST",
               dataType:"json",
               data:xdata,
@@ -49,12 +49,12 @@
                  if(data == "Seller")
                  {
                     alert("Welcome Seller");
-                    window.location.href = "../Seller/bodyIndex.php";
+                    window.location.href = "Seller/bodyIndex.php";
                  }
                  else if(data == "Admin")
                  {
                     alert("Welcome Admin");
-                     window.location = "../Admin/AdminDashboard.php";
+                     window.location = "/Admin/AdminDashboard.php";
                  }
                  else if(data == "")
                  {

@@ -83,4 +83,8 @@ foreach ($categories as $key => $value)
  </div>	
 </div>	
 </body>
+   <?php 
+                    require_once('modalLogin.php');
+                    include('modalRegister.php');
+                   ?>
 </html>

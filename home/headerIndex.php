@@ -117,7 +117,7 @@
     function changePage()
     {
       var category = $('#sltCategory').val();
-      alert($('#sltCategory').val());
+      // alert($('#sltCategory').val());
         if(category=='all')
         {
           window.location.href = "viewDisplayItems.php";

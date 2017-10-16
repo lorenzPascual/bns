@@ -42,7 +42,7 @@
       			<b><span style="color:white;margin-top:-50px;position:absolute;top:190px;">&nbsp;&nbsp;&nbsp;<?php echo $returnseller['SellerName'];?></span><br><br>
       			<img src="../images/sellerCall.png" width="30" height="30"  style="margin-left:-160px;margin-top: ">
       			<span style="color:white;margin-top:-50px;position:absolute;top:245px;">&nbsp;&nbsp;&nbsp;<?php echo $returnseller['SellerMobile'];?></span><br><br></b>
-      			<button class=btn btn-block btn-lg btn-success" style="background-color:#86ac41;width:200px;height:50px;border:2px solid #021c1e"><b style="color:white;font-size:25px;">Chat Seller</b></button>
+      			<button id="chatSeller" class=btn btn-block btn-lg btn-success" style="background-color:#86ac41;width:200px;height:50px;border:2px solid #021c1e"><b style="color:white;font-size:25px;">Chat Seller</b></button>
       			</center>
       		</div>
      	</div>
@@ -65,6 +65,8 @@
 </div>
 <script type="text/javascript">
 
-       
+       $("#chatSeller").click(function(){
+        alert('Please Login First');
+       });
 
 </script>

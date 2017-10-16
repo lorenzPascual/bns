@@ -59,7 +59,7 @@ $msg = $itemServices->getMyMsgs($_COOKIE['id']);
      <div class="col-md-10" style="height:87%;position:absolute;border-right:2px solid silver;border-top:2px solid silver;left:16.6%">
         <div class="col-md-12 bg bg-primary" style="position:absolute;left:0;height:39px">
              <img src="../pascual.jpg" width="30px" height="30px" style="position:absolute;border-radius:15px;left:10px;top:5px">
-             <font style="font-weight:bolder;position:absolute;left:48px;top:7px">&nbsp;Lorenz Pascual</font>
+             <font style="font-weight:bolder;position:absolute;left:48px;top:7px">&nbsp;<?php echo $senders['SellerName'];?></font>
         </div>
         //lagayan ng mga messages
         <div class="col-md-12" style="position:abssolute;top:50px;black;height:470px;overflow-y:scroll" id="MsgContent">

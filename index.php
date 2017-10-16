@@ -40,10 +40,7 @@
 				            <input type="submit" class="btn pull-right" id="sellitem" name="sellitem" value="Sell your item now">     
 				          </form> -->
 				          <!-- Login Modal -->
-				           <?php 
-				            include('home/modalLogin.php');
-				            include('home/modalRegister.php');
-				           ?>
+				        
                           <!-- End of Login Modal -->
                     </div>	
                </div>  
@@ -53,10 +50,13 @@
        
  
 	<?php 
-
+ 
+                    require_once('modalLogin.php');
+                    include('modalRegister.php');
    include('home\bodyIndex.php');
 
 ?>
 </div>
 </div>
+
 </html>
