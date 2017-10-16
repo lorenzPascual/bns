@@ -35,17 +35,39 @@ public $link;
     return $items;
   }
 
-  public function sendMsg($content,$sender,$reciever,$about) 
+  public function sendMsg($content,$sender,$reciever) 
   {
-    $query = mysqli_query($this->link,"INSERT INTO messages(content,sender,reciever,about) VALUES ( '$content','$sender','$reciever','$about')");
-    if($query)
+
+    $return = false;
+
+    $query = mysqli_query($this->link,"SELECT * FROM  messages WHERE (reciever='$reciever' AND sender='$sender') OR (sender='$reciever' AND reciever='$sender') ");
+    if(mysqli_num_rows($query) > 0)
     {
-      return true;
+      $return = false;
     } 
     else
     {
-      return false;
-    }         
+      $return = true;
+        $query3 = mysqli_query($this->link,"INSERT INTO messages(content,sender,reciever) VALUES ( '$content','$sender','$reciever')");
+        if($query3)
+        {
+            $last_id = $this->link->insert_id;
+            $query2 = mysqli_query($this->link,"INSERT INTO replys(replyer,msgId,msgContent) VALUES ( '$sender','$last_id','$content')");
+            if($query2)
+            {
+              $return = true;
+            } 
+            else
+            {
+              $return = false;
+            }
+        } 
+        else
+        {
+          $return = false;
+        }
+    }
+    return $return;
   }
   public function replyMsg($replyer,$msgId,$msgContent) 
   {

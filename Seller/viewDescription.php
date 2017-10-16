@@ -8,7 +8,7 @@
 	    $sellerServices = new SellerServices();
 	    $returnseller= $sellerServices->getSeller($returnval['ItemOwner']);
 
-		/*var_dump($returnval);*/
+		// var_dump($returnval['ItemOwner']);
 ?>
 <!-- <input type="text" value="<?php echo $_GET['id']?> "> -->
 <style type="text/css">
@@ -43,7 +43,8 @@
       			<b><span style="color:white;margin-top:-50px;position:absolute;top:190px;">&nbsp;&nbsp;&nbsp;<?php echo $returnseller['SellerName'];?></span><br><br>
       			<img src="../images/sellerCall.png" width="30" height="30"  style="margin-left:-160px;margin-top: ">
       			<span style="color:white;margin-top:-50px;position:absolute;top:245px;">&nbsp;&nbsp;&nbsp;<?php echo $returnseller['SellerMobile'];?></span><br><br></b>
-      			<button class=btn btn-block btn-lg btn-success" style="background-color:#86ac41;width:200px;height:50px;border:2px solid #021c1e"><b style="color:white;font-size:25px;">Chat Seller</b></button>
+      			<button id="ChatSeller" class=btn btn-block btn-lg btn-success" style="background-color:#86ac41;width:200px;height:50px;border:2px solid #021c1e" ><b style="color:white;font-size:25px;">Chat Seller</b></button>
+            <input type="text" name="sellerId" style='display: none' value="<?php echo $returnseller['SellerId']; ?>">
       			</center>
       		</div>
      	</div>
@@ -64,8 +65,67 @@
     </div>
   </div>
 </div>
-<script type="text/javascript">
+ <div class="modal fade" id="ModalMsg">
+   <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color:#2fb1cb">
+        <button type="button" data-dismiss="modal" class="close">&times;</button>
+        <h1 class="modal-title" style="color:white">SendMessage</h1>
+      </div>
+      <div class="modal-body">
+       <input type="text" id='xsender' value="<?php echo $_COOKIE['id'];?>">
+       <input type="text" id='xreciever' value="<?php echo $returnseller['SellerId']; ?>">
+       <input type="text" id='xcontent'>
+       <input type="button" id="sendMsgModal">
 
+      </div>
+      
+    </div>
+   </div> 
+ </div>
+<script type="text/javascript">
+  $("#ChatSeller").click(function(){
+     $("#ModalMsg").modal("show");
+  });
+   $("#sendMsgModal").click(function(){
+    alert('asd');
+    var content = $("#xcontent").val();
+    var reciever = $("#xreciever").val();
+    var sender = $("#xsender").val();
+
+    var xdata = 'event_action=sendMessage&content='+content+'&reciever='+reciever+'&sender='+sender;
+  
+      jQuery.ajax
+      ({
+        url:"ajaxSeller.php",
+        dataType:"json",
+        type:"POST",
+        data:xdata,
+        success:function(xobj)
+        {
+          alert(xobj);
+        }
+      });
+  });
+  function loadCategory()
+    {
+          var xdata = 'event_action=loadCategory';
+         
+           jQuery.ajax
+           ({
+              url:"ajaxSeller.php",
+              dataType:"json",
+              type:"POST",
+              data:xdata,
+              success:function(xobj)
+              {
+                $.each(xobj, function(key, value)
+                {
+                   $('#sltItemCat').append("<option id='1' value='"+value['id']+"' >"+value['categoryName']+"</option>");
+                })
+              }
+           });
+    }
        
 
 </script>

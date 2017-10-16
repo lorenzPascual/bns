@@ -1,7 +1,7 @@
 <?php
     include('..\functions\Admin.php');
     include('..\functions\item.php');
-    include('..\functions\Msg.php');
+    include('..\functions\msg.php');
 
     // var_dump($_FILES);
 
@@ -12,6 +12,15 @@
 	  $returnval= $adminService->getCategories();
 	  echo json_encode($returnval);
 	}
+
+	if(isset($_POST['event_action']) && trim($_POST['event_action']) == 'sendMessage') 
+	{
+	  $msgService = new MsgServices();
+	  var_dump($_POST);
+	  $returnval= $msgService->sendMsg($_POST['content'],$_POST['sender'],$_POST['reciever']);
+	  echo json_encode($returnval);
+	}
+
 	if(isset($_POST['event_action']) && trim($_POST['event_action']) == 'loadImages') 
 	{
 	  $itemService = new ItemServices();
